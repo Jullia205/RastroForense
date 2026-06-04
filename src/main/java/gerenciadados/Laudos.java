@@ -1,4 +1,4 @@
-package dados;
+package gerenciadados;
 
 public class Laudos {
 }
