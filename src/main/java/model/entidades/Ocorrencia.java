@@ -1,6 +1,4 @@
-package gerenciadados.dados;
-
-import java.util.Date;
+package model.entidades;
 
 public class Ocorrencia {
      public String descricao;

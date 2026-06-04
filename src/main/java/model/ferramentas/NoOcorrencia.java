@@ -1,5 +1,5 @@
-package gerenciadados.dados.nos;
-import gerenciadados.dados.Ocorrencia;
+package model.ferramentas;
+import model.entidades.Ocorrencia;
 
 public class NoOcorrencia {
     public Ocorrencia ocorrencia;

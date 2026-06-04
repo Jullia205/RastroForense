@@ -1,4 +1,4 @@
-package ferramentas;
+package model.ferramentas;
 
 public class BlocoDeNotas {
 }

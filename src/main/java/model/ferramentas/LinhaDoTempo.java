@@ -1,6 +1,4 @@
-package ferramentas;
-
-import gerenciadados.dados.nos.NoOcorrencia;
+package model.ferramentas;
 
 public class LinhaDoTempo {
     NoOcorrencia inicio;

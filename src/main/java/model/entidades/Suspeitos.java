@@ -1,4 +1,4 @@
-package gerenciadados.dados;
+package model.entidades;
 
 public class Suspeitos {
     String nome;
