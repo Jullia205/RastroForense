@@ -1,4 +1,4 @@
 package model.ferramentas;
 
-public class BlocoDeNotas {
+public class BlocoDeNotas { //julia
 }
