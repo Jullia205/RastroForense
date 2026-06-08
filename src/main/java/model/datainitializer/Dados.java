@@ -1,5 +1,7 @@
-package model.entidades;
+package model.datainitializer;
 
+import model.entidades.Evidencias;
+import model.entidades.Suspeitos;
 import model.ferramentas.FilaEvidencias;
 import model.ferramentas.FilaInterrogatorio;
 import model.ferramentas.PilhaAcoes;
