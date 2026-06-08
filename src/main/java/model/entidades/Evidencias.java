@@ -15,27 +15,18 @@ public class Evidencias { //julia
         this.descricao = descricao;
     }
 
-    public int getIDCASO() {
-        return IDCASO;
-    }
-
-    public String getDATA() {
-        return DATA;
-    }
-
-    public String getENDERECO() {
-        return ENDERECO;
-    }
-
-    public String getIdColeta() {
-        return idColeta;
-    }
-
-    public String getLocalDeColeta() {
-        return localDeColeta;
-    }
-
-    public String getDescricao() {
-        return descricao;
+    @Override
+    public String toString() {
+        return "Protocolo 000067-01012003\n" +
+                "------------------------\n" +
+                "ID: " + IDCASO +
+                "\nDATA: " + DATA +
+                "\nENDEREÇO: " + ENDERECO +
+                "\n------------------------" +
+                "\nID-COLETA: " + idColeta +
+                "\n------------------------" +
+                "\nDESCRIÇÃO: " + descricao +
+                "\nLOCAL DE COLETA: " + localDeColeta
+                ;
     }
 }

@@ -1,5 +1,9 @@
 package model.entidades;
 
+import model.ferramentas.FilaEvidencias;
+import model.ferramentas.FilaInterrogatorio;
+import model.ferramentas.PilhaAcoes;
+
 public class Dados {
 
     Suspeitos hortencia = new Suspeitos(
@@ -81,5 +85,46 @@ public class Dados {
             "Lareira do escritório",
             "Página parcialmente queimada contendo instruções para um ritual de purificação espiritual realizado na noite anterior ao óbito."
     );
+
+    public PilhaAcoes criarHistorico() {
+
+        PilhaAcoes pilha = new PilhaAcoes();
+
+        pilha.registrarAcao(
+                "Caso 3458887 iniciado"
+        );
+
+        return pilha;
+    }
+
+    public FilaEvidencias criarFilaEvidencias() {
+
+        FilaEvidencias fila = new FilaEvidencias();
+
+        fila.enfileirar(vinhoBeladona);
+        fila.enfileirar(cartasMirabela);
+        fila.enfileirar(documentosFinanceiros);
+        fila.enfileirar(bibliaYanka);
+        fila.enfileirar(materialOcultista);
+        fila.enfileirar(remediosDormir);
+        fila.enfileirar(pedidoDemissao);
+        fila.enfileirar(paginaQueimada);
+
+        return fila;
+    }
+
+    public FilaInterrogatorio criarFilaInterrogatorio() {
+
+        FilaInterrogatorio fila = new FilaInterrogatorio();
+
+        fila.enfileirar(hortencia);
+        fila.enfileirar(yanka);
+        fila.enfileirar(mirabela);
+        fila.enfileirar(mariana);
+        fila.enfileirar(marcos);
+
+        return fila;
+    }
+
 
 }
