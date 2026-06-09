@@ -38,6 +38,12 @@ public class Dados {
             "Mordomo"
     );
 
+
+    Suspeitos.Relacionamento mariEParcos = new Suspeitos.Relacionamento(mariana, marcos, "pai e filha");
+    Suspeitos.Relacionamento mirabelaECesar = new Suspeitos.Relacionamento(mirabela, hortencia, "irmãs");
+    Suspeitos.Relacionamento yankaEHortencia = new Suspeitos.Relacionamento(yanka, hortencia, "mãe e filha");
+    Suspeitos.Relacionamento yankaEMirabela = new Suspeitos.Relacionamento(yanka, mirabela, "tia e sobrinha");
+
     // EVIDÊNCIAS
 
     Evidencias vinhoBeladona = new Evidencias(

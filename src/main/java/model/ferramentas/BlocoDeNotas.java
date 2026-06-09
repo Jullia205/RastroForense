@@ -12,6 +12,7 @@ public class BlocoDeNotas {
     }
 
     public void setAnotacao(String anotacao) {
-        this.anotacao = anotacao;
+        this.anotacao += anotacao +  "\n";
     }
+
 }
