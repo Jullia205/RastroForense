@@ -11,35 +11,43 @@ public class Dados {
     Suspeitos hortencia = new Suspeitos(
             "Hortência Rodrigues Santana",
             37,
-            "Contadora"
+            "Contadora",
+            "Esposa da vítima"
     );
 
     Suspeitos yanka = new Suspeitos(
             "Yanka Rodrigues Andrade",
             11,
-            "Nenhuma"
+            "Nenhuma",
+            "Filha da vítima"
+
     );
 
     Suspeitos mirabela = new Suspeitos(
             "Mirabela Andrade Sousa",
             30,
-            "Médica"
+            "Médica",
+            "Cunhada da vítima"
+
     );
 
     Suspeitos mariana = new Suspeitos(
             "Mariana Barreto Marques",
             30,
-            "Enfermeira"
+            "Enfermeira",
+            "Enfermeira pessoal da cunhada da vítima"
+
     );
 
     Suspeitos marcos = new Suspeitos(
             "Marcos Nunes",
             55,
-            "Mordomo"
+            "Mordomo",
+            "Mordomo da vítima"
     );
 
 
-    Suspeitos.Relacionamento mariEParcos = new Suspeitos.Relacionamento(mariana, marcos, "pai e filha");
+    Suspeitos.Relacionamento mariEMarcos = new Suspeitos.Relacionamento(mariana, marcos, "pai e filha");
     Suspeitos.Relacionamento mirabelaECesar = new Suspeitos.Relacionamento(mirabela, hortencia, "irmãs");
     Suspeitos.Relacionamento yankaEHortencia = new Suspeitos.Relacionamento(yanka, hortencia, "mãe e filha");
     Suspeitos.Relacionamento yankaEMirabela = new Suspeitos.Relacionamento(yanka, mirabela, "tia e sobrinha");
