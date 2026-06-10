@@ -55,7 +55,7 @@ public class Dados {
     Evidencias cartasMirabela = new Evidencias(
             "887-00-2",
             "Gaveta do escritório",
-            "Cartas trocadas entre César e Mirabela revelam um relacionamento amoroso extraconjugal."
+            "Cartas trocadas entre César e Mirabela revelam um relacionamento amoroso extraconjugal. Trechos indicam que Mirabela pedia constantemente por dinheiro."
     );
 
     Evidencias documentosFinanceiros = new Evidencias(
