@@ -1,15 +1,20 @@
 package model.ferramentas;
 
+import lombok.Getter;
+import model.datainitializer.Dados;
 import model.entidades.Suspeitos;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class FilaInterrogatorio {
 
     private NoSuspeito inicio;
     private NoSuspeito fim;
     private int tamanho;
+    private int perguntaAtual = 1;
+
 
     public void enfileirar(Suspeitos suspeito) {
         NoSuspeito novo = new NoSuspeito(suspeito);
@@ -41,6 +46,40 @@ public class FilaInterrogatorio {
         return suspeito;
     }
 
+
+    public String getPerguntaAtualS() {
+
+        switch (perguntaAtual) {
+
+            case 1:
+                return "O que aconteceu na noite prévia ao crime?";
+
+            case 2:
+                return "Como era sua relação com César?";
+
+            case 3:
+                return "Você tem alguma ideia de quem poderia querer César morto?";
+
+            case 4:
+                return "Onde você estava entre 21:45h e meia-noite?";
+
+            default:
+                return "";
+        }
+    }
+
+    public void avancarPergunta() {
+
+        perguntaAtual++;
+
+        if (perguntaAtual > 4) {
+
+            perguntaAtual = 1;
+            chamarProximo();
+        }
+    }
+
+
     public Suspeitos verProximo() {
         return estaVazia() ? null : inicio.suspeito;
     }
@@ -62,4 +101,5 @@ public class FilaInterrogatorio {
         }
         return lista;
     }
+
 }

@@ -1,5 +1,6 @@
 package model.ferramentas;
 
+import model.datainitializer.Dados;
 import model.entidades.Evidencias;
 
 public class FilaEvidencias {
@@ -74,4 +75,10 @@ public class FilaEvidencias {
             atual = atual.proximo;
         }
     }
+
+    public void main(String[] args){
+        Dados dados = new Dados();
+
+    }
+
 }

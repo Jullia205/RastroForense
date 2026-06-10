@@ -1,4 +1,4 @@
-package model.ferramentas;
+package model.datainitializer;
 
 import model.entidades.Acusacao;
 

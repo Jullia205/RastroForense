@@ -17,14 +17,10 @@ public class Evidencias { //julia
 
     @Override
     public String toString() {
-        return "Protocolo 000067-01012003\n" +
-                "------------------------\n" +
-                "ID: " + IDCASO +
+        return "------------------------\n" +
+                "ID-CASO: " + IDCASO +
                 "\nDATA: " + DATA +
-                "\nENDEREÇO: " + ENDERECO +
-                "\n------------------------" +
                 "\nID-COLETA: " + idColeta +
-                "\n------------------------" +
                 "\nDESCRIÇÃO: " + descricao +
                 "\nLOCAL DE COLETA: " + localDeColeta
                 ;
