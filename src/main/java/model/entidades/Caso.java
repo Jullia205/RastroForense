@@ -66,11 +66,13 @@ public class Caso {
                 "\nESTADO: " + ESTADO +
                 "\nENDERECO: " + ENDERECO +
                 "\n------------------------" +
-                "\nDESCRICAO: " + DESCRICAO +
-                "\nLAUDO: " + LAUDO
+                "\nDESCRICAO: " + DESCRICAO
                 ;
     }
+
 }
+
+
 
 
 
