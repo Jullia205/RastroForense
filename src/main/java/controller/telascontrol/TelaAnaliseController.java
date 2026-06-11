@@ -206,15 +206,6 @@ public class TelaAnaliseController {
         hbox.setMaxWidth(580);
         hbox.setMaxHeight(220);
 
-        // Placeholder da imagem da evidência
-        javafx.scene.layout.StackPane imgBox = new javafx.scene.layout.StackPane();
-        imgBox.setPrefSize(150, 150);
-        imgBox.setStyle("-fx-background-color: #3A3030;");
-        Label imgLabel = new Label("IMAGEM\nDA EVIDÊNCIA");
-        imgLabel.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 10px; -fx-text-fill: #666666; -fx-text-alignment: center;");
-        imgBox.getChildren().add(imgLabel);
-
-        // Texto da evidência
         javafx.scene.layout.VBox info = new javafx.scene.layout.VBox(12);
         info.setAlignment(javafx.geometry.Pos.TOP_LEFT);
 
@@ -224,7 +215,6 @@ public class TelaAnaliseController {
         detalhes.setMaxWidth(300);
         detalhes.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12px; -fx-text-fill: #C8B8B8;");
 
-        // Botão avançar (seta)
         Button btnAvancar = new Button("▶");
         btnAvancar.setStyle(
                 "-fx-background-color: transparent; -fx-text-fill: #CC8888; " +
@@ -237,7 +227,7 @@ public class TelaAnaliseController {
         });
 
         info.getChildren().addAll(detalhes, btnAvancar);
-        hbox.getChildren().addAll(imgBox, info);
+        hbox.getChildren().add(info);
         return hbox;
     }
 
@@ -248,24 +238,29 @@ public class TelaAnaliseController {
         card.setStyle("-fx-background-color: #2A2020; -fx-background-radius: 4;");
 
         // Foto (esquerda)
+        model.entidades.Suspeitos s = interrogatorioController.getSuspeitoAtual();
+
         javafx.scene.layout.StackPane fotoBox = new javafx.scene.layout.StackPane();
         fotoBox.setPrefWidth(170);
         fotoBox.setPrefHeight(200);
         fotoBox.setMinWidth(170);
         fotoBox.setStyle("-fx-background-color: #3A3030;");
-        Label fotoLabel = new Label("FOTO DO\nINDIVÍDUO");
-        fotoLabel.setStyle(
-                "-fx-font-family: 'Courier New'; -fx-font-size: 10px; " +
-                        "-fx-text-fill: #666666; -fx-text-alignment: center;"
-        );
-        fotoBox.getChildren().add(fotoLabel);
+
+        if (s != null) {
+            javafx.scene.image.ImageView iv = getImagemSuspeito(s.getNome());
+            if (iv != null) {
+                fotoBox.getChildren().add(iv);
+            } else {
+                Label fotoLabel = new Label("FOTO DO\nINDIVÍDUO");
+                fotoLabel.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 10px; -fx-text-fill: #666666; -fx-text-alignment: center;");
+                fotoBox.getChildren().add(fotoLabel);
+            }
+        }
 
         // Detalhes + separador + resposta (direita)
         javafx.scene.layout.VBox infoBox = new javafx.scene.layout.VBox(0);
         infoBox.setPrefWidth(510);
         javafx.scene.layout.HBox.setHgrow(infoBox, javafx.scene.layout.Priority.ALWAYS);
-
-        model.entidades.Suspeitos s = interrogatorioController.getSuspeitoAtual();
 
         // Detalhes: nome, idade, profissão, relação
         String detalhesTexto = s != null
@@ -306,7 +301,8 @@ public class TelaAnaliseController {
         else if (nome.contains("Hortência") || nome.contains("Hortencia")) nomeArquivo = "Hortencia.png";
         else if (nome.contains("Marcos")) nomeArquivo = "Marcos.png";
         else if (nome.contains("Mariana")) nomeArquivo = "Mariana.png";
-
+        else if (nome.contains("Yanka")) nomeArquivo = "Yanka.png";
+        else if (nome.contains("Mirabela")) nomeArquivo = "Mirabela.png";
         if (nomeArquivo.isEmpty()) return null;
 
         javafx.scene.image.Image img = new javafx.scene.image.Image(
