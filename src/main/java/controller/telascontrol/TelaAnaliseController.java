@@ -13,13 +13,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.entidades.Ocorrencia;
+import model.ferramentas.BlocoDeNotas;
 import model.ferramentas.LinhaDoTempo;
 
 import java.util.List;
 
 public class TelaAnaliseController {
 
-    // --- Menu lateral ---
+    //Menu lateral
+    @FXML private Label lblBlocoDeNotas;
     @FXML private Label lblDetalhes;
     @FXML private Label lblLaudo;
     @FXML private Label lblEvidencias;
@@ -28,18 +30,17 @@ public class TelaAnaliseController {
     @FXML private Label lblHistorico;
     @FXML private Button btnAcusar;
 
-    // --- Área central ---
     @FXML private StackPane painelCentral;
 
-    // --- Controllers de lógica ---
+    //Controllers de lógica
     private CasoController casoController;
+    private BlocoDeNotas blocoDeNotas;
     private EvidenciaController evidenciaController;
     private InterrogatorioController interrogatorioController;
     private LinhaDoTempo linhaDoTempo;
 
     private Label menuAtivo = null;
 
-    // Estilo base e ativo do menu
     private static final String ESTILO_MENU =
             "-fx-font-family: 'Courier New'; -fx-font-size: 13px; " +
                     "-fx-text-fill: #AAAAAA; -fx-cursor: hand; -fx-padding: 10 20 10 20;";
@@ -51,27 +52,28 @@ public class TelaAnaliseController {
             "-fx-font-family: 'Courier New'; -fx-font-size: 13px; " +
                     "-fx-text-fill: #555555; -fx-padding: 10 20 10 20;";
 
-    /**
-     * Chamado por TelaDetalhesController após clicar em ANALISAR.
-     */
+    //Chamado por TelaDetalhesController após clicar em ANALISAR.
+
     public void inicializar(CasoController casoController,
                             EvidenciaController evidenciaController,
                             InterrogatorioController interrogatorioController) {
         this.casoController = casoController;
+        this.blocoDeNotas = casoController.getNotas();
         this.evidenciaController = evidenciaController;
         this.interrogatorioController = interrogatorioController;
         this.linhaDoTempo = casoController.getLinhaDoTempo();
-
-        atualizarBloqueioInterrogatorio();
 
         // Abre na aba de detalhes por padrão
         setMenuAtivo(lblDetalhes);
         mostrarDetalhes();
     }
 
-    // ──────────────────────────────────────────
-    // Handlers do menu lateral
-    // ──────────────────────────────────────────
+
+    @FXML
+    private void handleBlocoDeNotas() {
+        setMenuAtivo(lblBlocoDeNotas);
+        mostrarBlocoDeNotas();
+    }
 
     @FXML
     private void handleDetalhes() {
@@ -93,11 +95,8 @@ public class TelaAnaliseController {
 
     @FXML
     private void handleInterrogatorio() {
-        if (!evidenciaController.possuiEvidencias()) {
-            setMenuAtivo(lblInterrogatorio);
-            mostrarInterrogatorio();
-        }
-        // Se ainda há evidências, ignora o clique (item bloqueado)
+        setMenuAtivo(lblInterrogatorio);
+        mostrarInterrogatorio();
     }
 
     @FXML
@@ -115,11 +114,14 @@ public class TelaAnaliseController {
     @FXML
     private void handleAcusar() {
         try {
-            // TODO: trocar pelo FXML da tela de acusação
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/view/TelaAcusacao.fxml")
             );
             Parent root = loader.load();
+
+            TelaAcusacaoController controller = loader.getController();
+            controller.inicializar(casoController);
+
             Stage stage = (Stage) btnAcusar.getScene().getWindow();
             stage.setScene(new Scene(root, 960, 540));
             stage.show();
@@ -128,9 +130,64 @@ public class TelaAnaliseController {
         }
     }
 
-    // ──────────────────────────────────────────
-    // Conteúdo de cada painel
-    // ──────────────────────────────────────────
+    private void mostrarBlocoDeNotas() {
+        painelCentral.getChildren().clear();
+
+        javafx.scene.layout.VBox container = new javafx.scene.layout.VBox(0);
+        container.setMaxWidth(620);
+
+        // Área de anotações existentes
+        javafx.scene.layout.StackPane areaNotas = new javafx.scene.layout.StackPane();
+        areaNotas.setMinHeight(220);
+        areaNotas.setStyle("-fx-background-color: #2A2020; -fx-background-radius: 4 4 0 0;");
+
+        String texto = blocoDeNotas.getAnotacao();
+        Label lblNotas = new Label(texto.isEmpty() ? "" : texto);
+        lblNotas.setWrapText(true);
+        lblNotas.setMaxWidth(580);
+        lblNotas.setStyle(
+                "-fx-font-family: 'Courier New'; -fx-font-size: 12px; " +
+                        "-fx-text-fill: #C8B8B8; -fx-padding: 20;"
+        );
+        areaNotas.getChildren().add(lblNotas);
+
+        // Barra inferior: campo de nova nota + botão
+        javafx.scene.layout.BorderPane barraAdicionar = new javafx.scene.layout.BorderPane();
+        barraAdicionar.setStyle(
+                "-fx-background-color: #1E1818; -fx-padding: 14 20 14 20; " +
+                        "-fx-background-radius: 0 0 4 4;"
+        );
+
+        javafx.scene.control.TextField campoNota = new javafx.scene.control.TextField();
+        campoNota.setPromptText("ADICIONAR");
+        campoNota.setStyle(
+                "-fx-font-family: 'Courier New'; -fx-font-size: 12px; " +
+                        "-fx-text-fill: #C8B8B8; -fx-background-color: transparent; " +
+                        "-fx-border-color: transparent; -fx-prompt-text-fill: #888888;"
+        );
+        javafx.scene.layout.BorderPane.setAlignment(campoNota, javafx.geometry.Pos.CENTER_LEFT);
+
+        Button btnAdicionar = new Button("+");
+        btnAdicionar.setStyle(
+                "-fx-background-color: transparent; -fx-text-fill: #CC8888; " +
+                        "-fx-font-size: 20px; -fx-cursor: hand;"
+        );
+        btnAdicionar.setOnAction(e -> {
+            String novaNota = campoNota.getText().trim();
+            if (!novaNota.isEmpty()) {
+                blocoDeNotas.setAnotacao(novaNota);
+                campoNota.clear();
+                mostrarBlocoDeNotas(); // atualiza a tela
+            }
+        });
+
+        barraAdicionar.setLeft(campoNota);
+        barraAdicionar.setRight(btnAdicionar);
+        javafx.scene.layout.BorderPane.setAlignment(btnAdicionar, javafx.geometry.Pos.CENTER);
+
+        container.getChildren().addAll(areaNotas, barraAdicionar);
+        painelCentral.getChildren().add(container);
+    }
 
     private void mostrarDetalhes() {
         painelCentral.getChildren().clear();
@@ -154,13 +211,32 @@ public class TelaAnaliseController {
         if (!evidenciaController.possuiEvidencias()) {
             Label vazio = new Label("Todas as evidências já foram analisadas.");
             vazio.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12px; -fx-text-fill: #888888;");
-            painelCentral.getChildren().add(vazio);
+
+            Button btnReiniciar = new Button("↺  Ver novamente");
+            btnReiniciar.setStyle(
+                    "-fx-font-family: 'Courier New'; " +
+                            "-fx-font-size: 13px; " +
+                            "-fx-font-weight: BOLD; " +
+                            "-fx-text-fill: #5A3A3A; " +
+                            "-fx-background-color: #E8C8C8; " +
+                            "-fx-border-color: #C8A0A0; " +
+                            "-fx-border-width: 1px; " +
+                            "-fx-padding: 10 40 10 40; " +
+                            "-fx-cursor: hand; " +
+                            "-fx-background-radius: 2px;"
+            );
+            btnReiniciar.setOnAction(e -> {
+                evidenciaController.reiniciar();
+                mostrarEvidencias();
+            });
+
+            VBox box = new VBox(14, vazio, btnReiniciar);
+            box.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+            painelCentral.getChildren().add(box);
             return;
         }
 
-        // Painel da evidência atual
-        javafx.scene.layout.HBox card = criarCardEvidencia();
-        painelCentral.getChildren().add(card);
+        painelCentral.getChildren().add(criarCardEvidencia());
     }
 
     private void mostrarInterrogatorio() {
@@ -169,20 +245,36 @@ public class TelaAnaliseController {
         if (interrogatorioController.terminou()) {
             Label fim = new Label("Interrogatório encerrado.");
             fim.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12px; -fx-text-fill: #888888;");
-            painelCentral.getChildren().add(fim);
+
+            Button btnReiniciar = new Button("↺  Ver novamente");
+            btnReiniciar.setStyle(
+                    "-fx-font-family: 'Courier New'; " +
+                            "-fx-font-size: 13px; " +
+                            "-fx-font-weight: BOLD; " +
+                            "-fx-text-fill: #5A3A3A; " +
+                            "-fx-background-color: #E8C8C8; " +
+                            "-fx-border-color: #C8A0A0; " +
+                            "-fx-border-width: 1px; " +
+                            "-fx-padding: 10 40 10 40; " +
+                            "-fx-cursor: hand; " +
+                            "-fx-background-radius: 2px;"
+            );
+            btnReiniciar.setOnAction(e -> {
+                interrogatorioController.reiniciar();
+                mostrarInterrogatorio();
+            });
+
+            VBox box = new VBox(14, fim, btnReiniciar);
+            box.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+            painelCentral.getChildren().add(box);
             return;
         }
 
-        javafx.scene.layout.VBox container = new javafx.scene.layout.VBox(20);
+        VBox container = new VBox(20);
         container.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         container.setMaxWidth(680);
-
-        // Card superior: foto + detalhes/resposta
         container.getChildren().add(criarCardSuspeito());
-
-        // Card inferior: pergunta + seta fixa
         container.getChildren().add(criarCardPergunta());
-
         painelCentral.getChildren().add(container);
     }
 
@@ -280,15 +372,11 @@ public class TelaAnaliseController {
         painelCentral.getChildren().add(scroll);
     }
 
-    // ──────────────────────────────────────────
-    // Cards reutilizáveis
-    // ──────────────────────────────────────────
-
     private javafx.scene.layout.HBox criarCardEvidencia() {
         javafx.scene.layout.HBox hbox = new javafx.scene.layout.HBox(16);
         hbox.setStyle("-fx-background-color: #2A2020; -fx-padding: 20; -fx-background-radius: 4;");
         hbox.setMaxWidth(580);
-        hbox.setMaxHeight(220);
+        hbox.setMaxHeight(250);
 
         javafx.scene.layout.VBox info = new javafx.scene.layout.VBox(12);
         info.setAlignment(javafx.geometry.Pos.TOP_LEFT);
@@ -306,7 +394,6 @@ public class TelaAnaliseController {
         );
         btnAvancar.setOnAction(e -> {
             evidenciaController.proximaEvidencia();
-            atualizarBloqueioInterrogatorio();
             mostrarEvidencias();
         });
 
@@ -321,7 +408,7 @@ public class TelaAnaliseController {
         card.setPrefHeight(200);
         card.setStyle("-fx-background-color: #2A2020; -fx-background-radius: 4;");
 
-        // Foto (esquerda)
+        // Foto
         model.entidades.Suspeitos s = interrogatorioController.getSuspeitoAtual();
 
         javafx.scene.layout.StackPane fotoBox = new javafx.scene.layout.StackPane();
@@ -431,9 +518,7 @@ public class TelaAnaliseController {
 
         return rodape;
     }
-    // ──────────────────────────────────────────
-    // Utilitários
-    // ──────────────────────────────────────────
+
 
     private void setMenuAtivo(Label item) {
         if (menuAtivo != null) menuAtivo.setStyle(ESTILO_MENU);
@@ -441,11 +526,5 @@ public class TelaAnaliseController {
         item.setStyle(ESTILO_MENU_ATIVO);
     }
 
-    private void atualizarBloqueioInterrogatorio() {
-        if (evidenciaController.possuiEvidencias()) {
-            lblInterrogatorio.setStyle(ESTILO_MENU_BLOQUEADO);
-        } else {
-            lblInterrogatorio.setStyle(ESTILO_MENU);
-        }
-    }
+
 }

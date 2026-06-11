@@ -11,12 +11,21 @@
         prefHeight="540"
         style="-fx-background-color: #0D0D0D;">
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- TOPO: título do caso                    -->
-    <!-- ═══════════════════════════════════════ -->
     <top>
         <VBox style="-fx-background-color: #0D0D0D;">
-            <HBox alignment="CENTER_RIGHT" style="-fx-padding: 12 20 12 20;">
+            <HBox alignment="CENTER_LEFT" style="-fx-padding: 12 20 12 20;">
+                <Label
+                        fx:id="lblBlocoDeNotas"
+                        text="BLOCO DE NOTAS"
+                        onMouseClicked="#handleBlocoDeNotas"
+                        style="
+                    -fx-font-family: 'Courier New';
+                    -fx-font-size: 11px;
+                    -fx-text-fill: #AAAAAA;
+                    -fx-font-weight: BOLD;
+                    -fx-cursor: hand;
+                "/>
+                <Region HBox.hgrow="ALWAYS"/>
                 <Label
                         fx:id="lblTituloCaso"
                         text="CASO - 3458887"
@@ -31,9 +40,8 @@
         </VBox>
     </top>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- ESQUERDA: menu lateral                  -->
-    <!-- ═══════════════════════════════════════ -->
+
+
     <left>
         <VBox
                 alignment="TOP_CENTER"
@@ -54,7 +62,7 @@
             <Label fx:id="lblEvidencias"  text="EVIDÊNCIAS"        onMouseClicked="#handleEvidencias"
                    style="-fx-font-family: 'Courier New'; -fx-font-size: 13px; -fx-text-fill: #AAAAAA; -fx-cursor: hand; -fx-padding: 10 20 10 20;"/>
             <Label fx:id="lblInterrogatorio" text="INTERROGATÓRIO" onMouseClicked="#handleInterrogatorio"
-                   style="-fx-font-family: 'Courier New'; -fx-font-size: 13px; -fx-text-fill: #555555; -fx-padding: 10 20 10 20;"/>
+                   style="-fx-font-family: 'Courier New'; -fx-font-size: 13px; -fx-text-fill: #AAAAAA; -fx-cursor: hand; -fx-padding: 10 20 10 20;"/>
             <Label fx:id="lblLinhaTempo"  text="LINHA DO TEMPO"    onMouseClicked="#handleLinhaTempo"
                    style="-fx-font-family: 'Courier New'; -fx-font-size: 13px; -fx-text-fill: #AAAAAA; -fx-cursor: hand; -fx-padding: 10 20 10 20;"/>
             <Label fx:id="lblHistorico"   text="HISTÓRICO"         onMouseClicked="#handleHistorico"
@@ -62,7 +70,6 @@
 
             <Region VBox.vgrow="ALWAYS"/>
 
-            <!-- Botão ACUSAR -->
             <Button
                     fx:id="btnAcusar"
                     text="ACUSAR"
@@ -84,9 +91,7 @@
         </VBox>
     </left>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- CENTRO: conteúdo dinâmico               -->
-    <!-- ═══════════════════════════════════════ -->
+
     <center>
         <StackPane
                 fx:id="painelCentral"

@@ -38,8 +38,8 @@ public class Dados {
             "Médica",
             "Cunhada da vítima",
             "Minha irmã fez um bafafá por conta do idiota do marido dela e saiu umas 21:00, provavelmente para o cassino, como sempre. César parece não ter se importado muito e chamou todo mundo para a reza noturna. Logo depois eu fui me arrumar para dormir.",
-            "César era muito carismático. As pessoas viam apenas o pastor respeitado, mas eu conheci um lado mais humano dele. Ele tinha defeitos, claro, mas também carregava muitos segredos. Recentemente ele estava mais estranho que o normal, passava mais tempo no escritório do que comigo.",
-            "César tinha uma reputação impecável. Se alguém o odiava, certamente não demonstrava isso em público. Mas algumas pessoas dentro desta casa tinham motivos para guardar ressentimentos. Hortênsia pode ter enlouquecido na noite anterior, mas não faria algo assim.",
+            "As pessoas viam apenas o pastor respeitado, mas eu conheci um lado mais humano dele. Ele tinha defeitos, claro, carregava muitos segredos. Recentemente ele estava mais estranho que o normal, passava muito tempo no escritório",
+            "César tinha uma reputação impecável. Mas algumas pessoas dentro desta casa tinham motivos para guardar ressentimentos. Hortênsia pode ter enlouquecido na noite anterior, mas não faria algo assim.",
             "Eu estava nos meus aposentos. Minha perna estava machucada e eu pretendia descansar. Tenho insônia, então fiquei acordada por algum tempo lendo até o sonífero fazer efeito."
     );
 
@@ -59,9 +59,9 @@ public class Dados {
             55,
             "Mordomo",
             "Mordomo da vítima",
-            "O jantar da família pareceu estar meio tenso, mas fui orientado a não me envolver em brigas do patrão. Enquanto ele e a dona Hortênsia discutiam, fui organizar o quarto da pequena que ia dormir. Ela insistiu que não estava com sono e que ia ler, então me retirei. Logo depois peguei o chá e subi para o escritório.",
+            "O jantar da família pareceu estar meio tenso. Enquanto ele e a dona Hortênsia discutiam, fui organizar o quarto da pequena que ia dormir. Ela insistiu que não estava com sono e que ia ler, então me retirei. Logo depois peguei o chá e subi para o escritório.",
             "Nunca vi ninguém falar mal dele em público. Era respeitado por toda a comunidade. Mas uma casa grande guarda muitos problemas que quem está de fora nunca vê. Eu trabalhei muito tempo com ele.",
-            "Eu servi esta família por muitos anos. Aprendi que existe uma grande diferença entre a imagem que uma pessoa constrói e a vida que ela realmente leva. Apesar de não ser o que aparenta, é inegável que ele ajudou muita gente.",
+            "Eu servi esta família por muitos anos. Aprendi que existe uma grande diferença entre a imagem que uma pessoa constrói e a vida que ela realmente leva. Apesar disso é inegável que ele ajudou muita gente.",
             "Entreguei o chá ao patrão e depois verifiquei se todas as portas estavam trancadas antes de me recolher. Todos já haviam ido deitar."
     );
 
@@ -76,13 +76,13 @@ public class Dados {
     Evidencias vinhoBeladona = new Evidencias(
             "887-00-1",
             "Escritório de César",
-            "Taça contendo resíduos de vinho. A perícia identificou vestígios de beladona misturados à bebida."
+            "Taça contendo resíduos de vinho.\nA perícia identificou vestígios de beladona misturados à bebida."
     );
 
     Evidencias cartasMirabela = new Evidencias(
             "887-00-2",
-            "Gaveta do escritório de César",
-            "Cartas trocadas entre César e Mirabela revelam um relacionamento amoroso extraconjugal. Trechos indicam que Mirabela pedia constantemente por dinheiro."
+            "Escritório de César",
+            "Cartas trocadas entre César e Mirabela revelam um relacionamento amoroso extraconjugal.\nTrechos indicam que Mirabela pedia constantemente por dinheiro."
     );
 
     Evidencias documentosFinanceiros = new Evidencias(
@@ -94,13 +94,13 @@ public class Dados {
     Evidencias biblia = new Evidencias(
             "887-00-4",
             "Escritório de César",
-            "Bíblia rosa contendo marcações coloridas frequentes em passagens sobre pecado, possessão e purificação divina."
+            "Bíblia rosa contendo marcações coloridas frequentes\nem passagens sobre pecado, possessão e purificação divina."
     );
 
     Evidencias materialOcultista = new Evidencias(
             "887-00-5",
             "Compartimento oculto atrás da estante do escritório",
-            "Coleção de manuscritos, símbolos ritualísticos e anotações relacionadas a práticas satanistas mantidas em segredo pela vítima."
+            "Coleção de manuscritos, símbolos ritualísticos e anotações\nrelacionadas a práticas satanistas mantidas em segredo pela vítima."
     );
 
     Evidencias remediosDormir = new Evidencias(

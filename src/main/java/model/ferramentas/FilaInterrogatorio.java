@@ -92,6 +92,15 @@ public class FilaInterrogatorio {
         return tamanho;
     }
 
+    public void limpar() {
+        inicio = null;
+        fim = null;
+        tamanho = 0;
+    }
+
+    public void resetarPergunta() {
+        perguntaAtual = 1;
+    }
     public List<Suspeitos> paraLista() {
         List<Suspeitos> lista = new ArrayList<>();
         NoSuspeito atual = inicio;

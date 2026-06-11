@@ -12,7 +12,7 @@ public class Finais {
 
     private static final String FINAL_ESPECIAL =
             """
-            A investigação revelou que a morte de César foi resultado da ação conjunta de Yanka e Mariana. Mariana administrou medicamentos sedativos à vítima durante a noite. Pouco tempo depois, Yanka ofereceu ao pai uma taça de vinho contaminada com beladona.\n
+            A investigação revelou que a morte de César foi resultado da ação conjunta de Yanka e Mariana.Yanka confessou ter colocado beladona no vinho do pai durante a reza.\nMariana, pouco tempo depois, administrou medicamentos sedativos à vítima durante a noite.\n
             A combinação das substâncias provocou uma intoxicação fatal. Durante o interrogatório final, Yanka afirmou que acreditava estar libertando o pai de uma influência demoníaca. Mariana alegou não ter conhecimento do envenenamento, mas sua participação foi fundamental para o desfecho do caso.\n
             FINAL: JUSTIÇA PERFEITA
             """;
@@ -51,11 +51,11 @@ public class Finais {
 
 
         if (yanka && mariana && mirabela) {
-            return FINAL_ESPECIAL;
+            return FINAL_VERDADEIRO;
         }
 
         if (yanka && mariana) {
-            return FINAL_VERDADEIRO;
+            return FINAL_ESPECIAL;
         }
 
         if (yanka) {

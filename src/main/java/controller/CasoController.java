@@ -3,7 +3,10 @@ package controller;
 import lombok.Getter;
 import model.datainitializer.Dados;
 import model.entidades.Caso;
+import model.entidades.Suspeitos;
 import model.ferramentas.*;
+
+import java.util.List;
 
 public class CasoController {
 
@@ -15,8 +18,12 @@ public class CasoController {
     private FilaInterrogatorio filaInterrogatorio;
     @Getter
     private PilhaAcoes historico;
+    @Getter
     private LinhaDoTempo linhaDoTempo;
+    @Getter
     private BlocoDeNotas notas;
+    @Getter
+    private List<Suspeitos> suspeitosOriginais;
     private boolean casoAberto;
 
     public CasoController() {
@@ -30,7 +37,9 @@ public class CasoController {
         this.filaInterrogatorio = dados.criarFilaInterrogatorio();
         this.linhaDoTempo = dados.criarLinhaDoTempo();
         this.historico = dados.criarHistorico();
+        this.notas = new BlocoDeNotas("");
         this.casoAberto = true;
+        this.suspeitosOriginais = this.filaInterrogatorio.paraLista(); // <-- adicionar
     }
 
     public String getTituloCaso() {
@@ -53,10 +62,6 @@ public class CasoController {
                 + "-------------------------------\n"
                 + caso.getLAUDO();
     }
-    public LinhaDoTempo getLinhaDoTempo() {
-        return linhaDoTempo;
-    }
-
 
     public void reiniciarCaso() {
         abrirCaso();

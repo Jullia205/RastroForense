@@ -16,8 +16,9 @@ public class FinalController {
 
     public String finalizarInvestigacao(Suspeitos s1, Suspeitos s2, Suspeitos s3) {
         Acusacao acusacao = new Acusacao();
-
-
+        if (s1 != null) acusacao.adicionarSuspeito(s1);
+        if (s2 != null) acusacao.adicionarSuspeito(s2);
+        if (s3 != null) acusacao.adicionarSuspeito(s3);
         return finais.avaliar(acusacao);
     }
 }

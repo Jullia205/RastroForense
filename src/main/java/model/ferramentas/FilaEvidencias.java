@@ -2,6 +2,9 @@ package model.ferramentas;
 
 import model.entidades.Evidencias;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FilaEvidencias {
 
     private NoEvidencia inicio;
@@ -65,7 +68,21 @@ public class FilaEvidencias {
         return inicio.evidencia;
     }
 
+    public void limpar() {
+        inicio = null;
+        fim = null;
+        tamanho = 0;
+    }
 
+    public List<Evidencias> paraLista() {
+        List<Evidencias> lista = new ArrayList<>();
+        NoEvidencia atual = inicio;
+        while (atual != null) {
+            lista.add(atual.evidencia);
+            atual = atual.proximo;
+        }
+        return lista;
+    }
 
 
 }
