@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// ESSA RODA O JAVAFX
+
 public class Main extends Application {
 
     @Override
