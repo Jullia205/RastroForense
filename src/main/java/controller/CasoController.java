@@ -3,10 +3,7 @@ package controller;
 import lombok.Getter;
 import model.datainitializer.Dados;
 import model.entidades.Caso;
-import model.ferramentas.BlocoDeNotas;
-import model.ferramentas.FilaEvidencias;
-import model.ferramentas.FilaInterrogatorio;
-import model.ferramentas.PilhaAcoes;
+import model.ferramentas.*;
 
 public class CasoController {
 
@@ -18,6 +15,7 @@ public class CasoController {
     private FilaInterrogatorio filaInterrogatorio;
     @Getter
     private PilhaAcoes historico;
+    private LinhaDoTempo linhaDoTempo;
     private BlocoDeNotas notas;
     private boolean casoAberto;
 
@@ -30,6 +28,7 @@ public class CasoController {
         this.caso = new Caso();
         this.filaEvidencias = dados.criarFilaEvidencias();
         this.filaInterrogatorio = dados.criarFilaInterrogatorio();
+        this.linhaDoTempo = dados.criarLinhaDoTempo();
         this.historico = dados.criarHistorico();
         this.casoAberto = true;
     }
@@ -53,6 +52,9 @@ public class CasoController {
                 + "CRIME: " + caso.getCRIME() + "\n"
                 + "-------------------------------\n"
                 + caso.getLAUDO();
+    }
+    public LinhaDoTempo getLinhaDoTempo() {
+        return linhaDoTempo;
     }
 
 

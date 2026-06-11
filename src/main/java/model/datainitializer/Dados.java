@@ -125,22 +125,22 @@ public class Dados {
 
     Ocorrencia oc1 = new Ocorrencia(
             "20:00",
-            "Família inteira reunida para jantar. Todos comem a mesma comida, exceto os funcionários."
+            "Família inteira reunida para jantar.\nTodos comem a mesma comida, exceto os funcionários."
     );
 
     Ocorrencia oc2 = new Ocorrencia(
             "20:20",
-            "Durante o jantar, Hortênsia descobre o caso entre César e Mirabela e faz um escândalo na frente de todos."
+            "Durante o jantar, Hortênsia descobre o caso \nentre César e Mirabela e faz um escândalo na frente de todos."
     );
 
     Ocorrencia oc3 = new Ocorrencia(
             "21:00",
-            "César e Hortênsia sobem para conversar em seu escritório. Barulhos e gritos são ouvidos pela casa."
+            "César e Hortênsia sobem para conversar em seu escritório.\nBarulhos e gritos são ouvidos pela casa."
     );
 
     Ocorrencia oc4 = new Ocorrencia(
             "21:00",
-            "Após a discussão, Hortênsia sai de casa sem informar para onde foi."
+            "Após a discussão,\nHortênsia sai de casa sem informar para onde foi."
     );
 
     Ocorrencia oc5 = new Ocorrencia(
@@ -150,7 +150,7 @@ public class Dados {
 
     Ocorrencia oc6 = new Ocorrencia(
             "21:30",
-            "Todos, exceto Yanka que estava em seu quarto, se reúnem para a sessão de leitura bíblica na sala do andar de baixo."
+            "Todos, exceto Yanka que estava em seu quarto,\nse reúnem para a sessão de leitura bíblica na sala do andar de baixo."
     );
 
     Ocorrencia oc7 = new Ocorrencia(
@@ -175,12 +175,12 @@ public class Dados {
 
     Ocorrencia oc11 = new Ocorrencia(
             "22:45",
-            "O restante da casa se prepara para dormir, pois haverá um culto especial de ano novo pela manhã."
+            "O restante da casa se prepara para dormir,\npois haverá um culto especial de ano novo pela manhã."
     );
 
     Ocorrencia oc12 = new Ocorrencia(
             "05:00",
-            "Hortênsia retorna para casa visivelmente embriagada e começa a bater e gritar na porta do escritório."
+            "Hortênsia retorna para casa visivelmente embriagada\ne começa a bater e gritar na porta do escritório."
     );
 
     Ocorrencia oc13 = new Ocorrencia(
@@ -236,7 +236,7 @@ public class Dados {
 
         LinhaDoTempo linha = new LinhaDoTempo();
 
-        linha.inserirNoFim(oc11);
+        linha.inserirNoFim(oc1);
         linha.inserirNoFim(oc2);
         linha.inserirNoFim(oc3);
         linha.inserirNoFim(oc4);

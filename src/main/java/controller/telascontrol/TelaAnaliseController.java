@@ -12,6 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.entidades.Ocorrencia;
+import model.ferramentas.LinhaDoTempo;
+
+import java.util.List;
 
 public class TelaAnaliseController {
 
@@ -31,6 +35,7 @@ public class TelaAnaliseController {
     private CasoController casoController;
     private EvidenciaController evidenciaController;
     private InterrogatorioController interrogatorioController;
+    private LinhaDoTempo linhaDoTempo;
 
     private Label menuAtivo = null;
 
@@ -55,6 +60,7 @@ public class TelaAnaliseController {
         this.casoController = casoController;
         this.evidenciaController = evidenciaController;
         this.interrogatorioController = interrogatorioController;
+        this.linhaDoTempo = casoController.getLinhaDoTempo();
 
         atualizarBloqueioInterrogatorio();
 
@@ -182,18 +188,96 @@ public class TelaAnaliseController {
 
     private void mostrarLinhaTempo() {
         painelCentral.getChildren().clear();
-        // TODO: implementar linha do tempo
-        Label placeholder = new Label("Linha do tempo — em breve.");
-        placeholder.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12px; -fx-text-fill: #888888;");
-        painelCentral.getChildren().add(placeholder);
+
+        javafx.scene.layout.VBox lista = new javafx.scene.layout.VBox(0);
+        lista.setMaxWidth(620);
+        lista.setStyle("-fx-background-color: #2A2020; -fx-background-radius: 4;");
+
+        List<Ocorrencia> ocorrencias = linhaDoTempo.paraLista();
+
+        if (ocorrencias.isEmpty()) {
+            Label vazio = new Label("Nenhum evento registrado.");
+            vazio.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12px; -fx-text-fill: #888888; -fx-padding: 20;");
+            lista.getChildren().add(vazio);
+        } else {
+            for (int i = 0; i < ocorrencias.size(); i++) {
+                model.entidades.Ocorrencia oc = ocorrencias.get(i);
+
+                javafx.scene.layout.VBox item = new javafx.scene.layout.VBox(4);
+                item.setStyle("-fx-padding: 14 20 14 20;");
+
+                Label hora = new Label(oc.getHora());
+                hora.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 11px; -fx-text-fill: #888888;");
+
+                Label desc = new Label(oc.getDescricao());
+                desc.setWrapText(true);
+                desc.setMaxWidth(580);
+                desc.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12px; -fx-text-fill: #C8B8B8;");
+
+                item.getChildren().addAll(hora, desc);
+                lista.getChildren().add(item);
+
+                // separador entre itens (exceto o último)
+                if (i < ocorrencias.size() - 1) {
+                    javafx.scene.control.Separator sep = new javafx.scene.control.Separator();
+                    sep.setStyle("-fx-background-color: #3A3A3A;");
+                    lista.getChildren().add(sep);
+                }
+            }
+        }
+
+        javafx.scene.control.ScrollPane scroll = new javafx.scene.control.ScrollPane(lista);
+        scroll.setFitToWidth(true);
+        scroll.setStyle("-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;");
+        scroll.setMaxWidth(620);
+        scroll.setMaxHeight(400);
+
+        painelCentral.getChildren().add(scroll);
     }
 
     private void mostrarHistorico() {
         painelCentral.getChildren().clear();
-        // TODO: exibir PilhaAcoes
-        Label placeholder = new Label("Histórico — em breve.");
-        placeholder.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12px; -fx-text-fill: #888888;");
-        painelCentral.getChildren().add(placeholder);
+
+        javafx.scene.layout.VBox lista = new javafx.scene.layout.VBox(0);
+        lista.setMaxWidth(620);
+        lista.setStyle("-fx-background-color: #2A2020; -fx-background-radius: 4;");
+
+        // Percorre a pilha pelo nó interno
+        // Como PilhaAcoes não tem paraLista(), acessa via exibirHistorico() adaptado
+        java.util.List<String> acoes = new java.util.ArrayList<>();
+        model.ferramentas.NoAcao atual = casoController.getHistorico().getTopo();
+        while (atual != null) {
+            acoes.add(atual.acao);
+            atual = atual.proximo;
+        }
+
+        if (acoes.isEmpty()) {
+            Label vazio = new Label("Nenhuma ação registrada.");
+            vazio.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12px; -fx-text-fill: #888888; -fx-padding: 20;");
+            lista.getChildren().add(vazio);
+        } else {
+            for (int i = 0; i < acoes.size(); i++) {
+                Label acao = new Label(acoes.get(i));
+                acao.setWrapText(true);
+                acao.setMaxWidth(580);
+                acao.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12px; -fx-text-fill: #C8B8B8; -fx-padding: 14 20 14 20;");
+                lista.getChildren().add(acao);
+
+                if (i < acoes.size() - 1) {
+                    javafx.scene.control.Separator sep = new javafx.scene.control.Separator();
+                    sep.setStyle("-fx-background-color: #3A3A3A;");
+                    lista.getChildren().add(sep);
+                }
+            }
+        }
+
+        javafx.scene.control.ScrollPane scroll = new javafx.scene.control.ScrollPane(lista);
+        scroll.setFitToWidth(true);
+        scroll.setStyle("-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;");
+        scroll.setMaxWidth(620);
+        scroll.setMaxHeight(400);
+
+        painelCentral.getChildren().add(scroll);
     }
 
     // ──────────────────────────────────────────

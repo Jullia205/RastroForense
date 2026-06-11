@@ -43,8 +43,8 @@ public class LinhaDoTempo {
         NoOcorrencia atual = inicio;
         while(atual!=null){
             System.out.println("--------------------------");
-            System.out.println("Descrição: "+atual.ocorrencia.getDescricao());
             System.out.println("Hora: "+atual.ocorrencia.getHora());
+            System.out.println("\tDescrição: "+atual.ocorrencia.getDescricao());
             atual = atual.proxima;
         }
     }
