@@ -15,9 +15,8 @@ public class EvidenciaController {
     }
 
     public Evidencias getEvidenciaAtual() {
-        return fila.chamarProximo();
+        return fila.verProximo();
     }
-
     public Evidencias proximaEvidencia() {
 
         Evidencias atual = fila.chamarProximo();

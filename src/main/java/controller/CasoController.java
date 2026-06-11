@@ -1,5 +1,6 @@
 package controller;
 
+import lombok.Getter;
 import model.datainitializer.Dados;
 import model.entidades.Caso;
 import model.ferramentas.BlocoDeNotas;
@@ -11,8 +12,11 @@ public class CasoController {
 
     private final Dados dados;
     private Caso caso;
+    @Getter
     private FilaEvidencias filaEvidencias;
+    @Getter
     private FilaInterrogatorio filaInterrogatorio;
+    @Getter
     private PilhaAcoes historico;
     private BlocoDeNotas notas;
     private boolean casoAberto;
@@ -56,5 +60,4 @@ public class CasoController {
         abrirCaso();
         historico.registrarAcao("Caso reiniciado");
     }
-
 }

@@ -1,6 +1,8 @@
 package controller.telascontrol;
 
 import controller.CasoController;
+import controller.EvidenciaController;
+import controller.InterrogatorioController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,16 +30,21 @@ public class TelaDetalhesController {
     @FXML
     private void handleAnalisar() {
         try {
-            // TODO: trocar pelo FXML da próxima tela
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/view/ProximaTela.fxml")
+                    getClass().getResource("/view/TelaAnalise.fxml")
             );
             Parent root = loader.load();
+
+            TelaAnaliseController proximoController = loader.getController();
+            proximoController.inicializar(
+                    casoController,
+                    new EvidenciaController(casoController.getFilaEvidencias(), casoController.getHistorico()),
+                    new InterrogatorioController(casoController.getFilaInterrogatorio(), casoController.getHistorico())
+            );
 
             Stage stage = (Stage) btnAnalisar.getScene().getWindow();
             stage.setScene(new Scene(root, 960, 540));
             stage.show();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
