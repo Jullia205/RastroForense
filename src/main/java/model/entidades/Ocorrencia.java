@@ -12,5 +12,4 @@ import lombok.ToString;
 public class Ocorrencia {
      private String descricao;
      private String hora;
-     private Suspeitos quemRelatou;
 }

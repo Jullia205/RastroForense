@@ -14,10 +14,6 @@ public class PilhaAcoes {
         return topo == null;
     }
 
-    public int getTamanho() {
-        return tamanho;
-    }
-
     public void registrarAcao(String acao) {
 
         NoAcao novo = new NoAcao(acao);
@@ -35,6 +31,7 @@ public class PilhaAcoes {
 
         while (atual != null) {
             System.out.println(atual.acao);
+            System.out.println("-------------------------");
             atual = atual.proximo;
         }
     }

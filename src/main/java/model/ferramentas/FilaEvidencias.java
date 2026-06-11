@@ -1,6 +1,5 @@
 package model.ferramentas;
 
-import model.datainitializer.Dados;
 import model.entidades.Evidencias;
 
 public class FilaEvidencias {
@@ -19,10 +18,6 @@ public class FilaEvidencias {
         return inicio == null;
     }
 
-    public int getTamanho() {
-        return tamanho;
-    }
-
     public void enfileirar(Evidencias evidencia) {
 
         NoEvidencia novo = new NoEvidencia(evidencia);
@@ -38,7 +33,7 @@ public class FilaEvidencias {
         tamanho++;
     }
 
-    public Evidencias desenfileirar() {
+    public Evidencias chamarProximo() {
 
         if (estaVazia()) {
             return null;
@@ -57,6 +52,10 @@ public class FilaEvidencias {
         return removida;
     }
 
+    public Evidencias verProximo() {
+        return estaVazia() ? null : inicio.evidencia;
+    }
+
     public Evidencias consultarPrimeira() {
 
         if (estaVazia()) {
@@ -66,19 +65,7 @@ public class FilaEvidencias {
         return inicio.evidencia;
     }
 
-    public void listarFila() {
 
-        NoEvidencia atual = inicio;
 
-        while (atual != null) {
-            System.out.println(atual.evidencia);
-            atual = atual.proximo;
-        }
-    }
-
-    public void main(String[] args){
-        Dados dados = new Dados();
-
-    }
 
 }

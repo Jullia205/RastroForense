@@ -1,9 +1,11 @@
 package model.datainitializer;
 
 import model.entidades.Evidencias;
+import model.entidades.Ocorrencia;
 import model.entidades.Suspeitos;
 import model.ferramentas.FilaEvidencias;
 import model.ferramentas.FilaInterrogatorio;
+import model.ferramentas.LinhaDoTempo;
 import model.ferramentas.PilhaAcoes;
 
 public class Dados {
@@ -119,6 +121,78 @@ public class Dados {
             "Página parcialmente queimada contendo instruções para um ritual de purificação espiritual realizado na noite anterior ao óbito."
     );
 
+    //Ocorrências
+
+    Ocorrencia oc1 = new Ocorrencia(
+            "20:00",
+            "Família inteira reunida para jantar. Todos comem a mesma comida, exceto os funcionários."
+    );
+
+    Ocorrencia oc2 = new Ocorrencia(
+            "20:20",
+            "Durante o jantar, Hortênsia descobre o caso entre César e Mirabela e faz um escândalo na frente de todos."
+    );
+
+    Ocorrencia oc3 = new Ocorrencia(
+            "21:00",
+            "César e Hortênsia sobem para conversar em seu escritório. Barulhos e gritos são ouvidos pela casa."
+    );
+
+    Ocorrencia oc4 = new Ocorrencia(
+            "21:00",
+            "Após a discussão, Hortênsia sai de casa sem informar para onde foi."
+    );
+
+    Ocorrencia oc5 = new Ocorrencia(
+            "21:00",
+            "Enquanto isso, Marcos sobe para conversar com Yanka no quarto da criança."
+    );
+
+    Ocorrencia oc6 = new Ocorrencia(
+            "21:30",
+            "Todos, exceto Yanka que estava em seu quarto, se reúnem para a sessão de leitura bíblica na sala do andar de baixo."
+    );
+
+    Ocorrencia oc7 = new Ocorrencia(
+            "21:45",
+            "César vai para o escritório."
+    );
+
+    Ocorrencia oc8 = new Ocorrencia(
+            "22:30",
+            "César pede um chá medicinal a Mariana, alegando estar se sentindo mal."
+    );
+
+    Ocorrencia oc9 = new Ocorrencia(
+            "22:45",
+            "Marcos chega ao escritório e entrega o chá a César."
+    );
+
+    Ocorrencia oc10 = new Ocorrencia(
+            "22:45",
+            "Marcos e César desejam boa noite um ao outro. Marcos fecha as portas do escritório."
+    );
+
+    Ocorrencia oc11 = new Ocorrencia(
+            "22:45",
+            "O restante da casa se prepara para dormir, pois haverá um culto especial de ano novo pela manhã."
+    );
+
+    Ocorrencia oc12 = new Ocorrencia(
+            "05:00",
+            "Hortênsia retorna para casa visivelmente embriagada e começa a bater e gritar na porta do escritório."
+    );
+
+    Ocorrencia oc13 = new Ocorrencia(
+            "05:00",
+            "Os demais moradores ainda se encontram em seus quartos."
+    );
+
+    Ocorrencia oc14 = new Ocorrencia(
+            "05:02",
+            "Marcos abre o escritório e encontra César sem vida."
+    );
+
     public PilhaAcoes criarHistorico() {
 
         PilhaAcoes pilha = new PilhaAcoes();
@@ -158,6 +232,26 @@ public class Dados {
 
         return fila;
     }
+    public LinhaDoTempo criarLinhaDoTempo() {
 
+        LinhaDoTempo linha = new LinhaDoTempo();
+
+        linha.inserirNoFim(oc11);
+        linha.inserirNoFim(oc2);
+        linha.inserirNoFim(oc3);
+        linha.inserirNoFim(oc4);
+        linha.inserirNoFim(oc5);
+        linha.inserirNoFim(oc6);
+        linha.inserirNoFim(oc7);
+        linha.inserirNoFim(oc8);
+        linha.inserirNoFim(oc9);
+        linha.inserirNoFim(oc10);
+        linha.inserirNoFim(oc11);
+        linha.inserirNoFim(oc12);
+        linha.inserirNoFim(oc13);
+        linha.inserirNoFim(oc14);
+
+        return linha;
+    }
 
 }

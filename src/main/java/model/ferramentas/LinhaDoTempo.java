@@ -25,54 +25,8 @@ public class LinhaDoTempo {
         }
     }
 
-    public boolean inserirApos(Ocorrencia referencia, Ocorrencia nova) {
-        NoOcorrencia alvo = buscarNo(referencia);
-        if (alvo == null) {
-            return false;
-        }
-        NoOcorrencia novoNo = new NoOcorrencia(nova);
-        NoOcorrencia proximoAntigo = alvo.proxima;
-
-        alvo.proxima = novoNo;
-        novoNo.anterior = alvo;
-        novoNo.proxima = proximoAntigo;
-
-        if (proximoAntigo != null) {
-            proximoAntigo.anterior = novoNo;
-        } else {
-            fim = novoNo;
-        }
-
-        return true;
-    }
-
-    public Ocorrencia avancar() {
-        if (cursor != null && cursor.proxima != null) {
-            cursor = cursor.proxima;
-        }
-        return ocorrenciaAtual();
-    }
-
-    public Ocorrencia voltar() {
-        if (cursor != null && cursor.anterior != null) {
-            cursor = cursor.anterior;
-        }
-        return ocorrenciaAtual();
-    }
-
     public Ocorrencia ocorrenciaAtual() {
         return cursor != null ? cursor.ocorrencia : null;
-    }
-
-    private NoOcorrencia buscarNo(Ocorrencia ocorrencia) {
-        NoOcorrencia atual = inicio;
-        while (atual != null) {
-            if (atual.ocorrencia == ocorrencia) {
-                return atual;
-            }
-            atual = atual.proxima;
-        }
-        return null;
     }
 
     public List<Ocorrencia> paraLista() {
@@ -91,7 +45,6 @@ public class LinhaDoTempo {
             System.out.println("--------------------------");
             System.out.println("Descrição: "+atual.ocorrencia.getDescricao());
             System.out.println("Hora: "+atual.ocorrencia.getHora());
-            System.out.println("Quem relatou: "+atual.ocorrencia.getQuemRelatou().getNome());
             atual = atual.proxima;
         }
     }
