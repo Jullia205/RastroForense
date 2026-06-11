@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+<StackPane
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="controller.telascontrol.TelaPrincipalController"
+        prefWidth="960"
+        prefHeight="540"
+        style="-fx-background-color: #000000;">
+
+    <!-- Logo (flor com joaninha) alinhada à direita -->
+    <ImageView
+            fitWidth="420"
+            fitHeight="500"
+            preserveRatio="true"
+            pickOnBounds="false"
+            StackPane.alignment="CENTER_RIGHT">
+        <image>
+            <Image url="@../images/logo.png"/>
+        </image>
+        <StackPane.margin>
+            <Insets right="30"/>
+        </StackPane.margin>
+    </ImageView>
+
+    <!-- Conteúdo principal alinhado à esquerda -->
+    <HBox alignment="CENTER_LEFT" pickOnBounds="false">
+        <padding>
+            <Insets left="80"/>
+        </padding>
+
+        <VBox alignment="CENTER_LEFT" spacing="40">
+
+            <VBox spacing="-10">
+                <Label
+                        text="RASTRO"
+                        style="
+                        -fx-font-family: 'Impact';
+                        -fx-font-size: 90px;
+                        -fx-font-weight: BOLD;
+                        -fx-text-fill: #8B1010;
+                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 8, 0, 2, 2);
+                    "/>
+                <Label
+                        text="FORENSE"
+                        style="
+                        -fx-font-family: 'Impact';
+                        -fx-font-size: 90px;
+                        -fx-font-weight: BOLD;
+                        -fx-text-fill: #8B1010;
+                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 8, 0, 2, 2);
+                    "/>
+            </VBox>
+
+            <Button
+                    fx:id="btnAbrirCaso"
+                    text="ABRIR CASO"
+                    onAction="#handleAbrirCaso"
+                    onMouseEntered="#handleBtnHoverEnter"
+                    onMouseExited="#handleBtnHoverExit"
+                    style="
+                    -fx-font-family: 'Courier New';
+                    -fx-font-size: 14px;
+                    -fx-font-weight: BOLD;
+                    -fx-text-fill: #CCCCCC;
+                    -fx-background-color: #3A3A3A;
+                    -fx-border-color: #888888;
+                    -fx-border-width: 2px;
+                    -fx-padding: 10 28 10 28;
+                    -fx-cursor: hand;
+                "/>
+
+        </VBox>
+    </HBox>
+
+</StackPane>
